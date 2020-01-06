@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Hello jsp!</h2>
+<h2>Hello World!</h2>
 </body>
 </html>

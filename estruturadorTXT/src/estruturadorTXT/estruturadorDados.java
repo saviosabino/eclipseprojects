@@ -16,6 +16,7 @@ public class estruturadorDados {
 		List<PMGinss> aposentados = new ArrayList<PMGinss>();
 		
 		try {
+			System.out.println("Iniciando carga do arquivo...");
 			List<String> lines = Files.readAllLines(Paths.get("apos_ativos_INSS_PMG.txt"));
 			
 			PMGinss aposentado = null;
@@ -25,7 +26,7 @@ public class estruturadorDados {
 	            {
 	            	aposentado = new PMGinss();
 	            	aposentados.add(aposentado);
-	            	aposentado.matric = line.substring(13, 19);
+	            	aposentado.setMatric(line.substring(13, 19)); 
 	            	aposentado.nome = line.split(" Orgao")[0].split("-")[1];
 	            	aposentado.orgao = line.split(" Orgao : ")[1].replace("|", "").trim();
 	                //...add data (name)
@@ -38,7 +39,7 @@ public class estruturadorDados {
 	            }else if(line.startsWith("| Assunto :")) {
 	            	aposentado.assunto = line.substring(12).replace("|", "").trim();//.split("|")[0];
 	            }
-	            //...add more data (description and dates)
+	            System.out.println("Fim da carga, dados agora são objetos mapeados.");
 	        }
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -53,7 +54,7 @@ public class estruturadorDados {
 			
 			out.println("matric; nome; orgao; arquivo; data; horario; usuario; assunto");
 			for (PMGinss apo : aposentados) {
-				out.println(apo.matric + "; " + apo.nome + "; " + apo.orgao +"; " + apo.arquivo + "; " +
+				out.println(apo.getMatric() + "; " + apo.nome + "; " + apo.orgao +"; " + apo.arquivo + "; " +
 					apo.data + "; " + apo.horario + "; " + apo.usuario + "; " + apo.assunto);
 			}		    
 			out.close();

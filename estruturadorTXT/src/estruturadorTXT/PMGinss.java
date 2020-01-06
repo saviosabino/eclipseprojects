@@ -1,7 +1,7 @@
 package estruturadorTXT;
 
 public class PMGinss {
-	String matric;
+	private String matric;
 	String nome;
 	String orgao;
 	String arquivo;
